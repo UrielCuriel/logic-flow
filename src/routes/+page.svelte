@@ -120,5 +120,5 @@
 	{#each initialNodes as { component, ...node }}
 		<svelte:component this={component} {...node} />
 	{/each}
-	<Background dotColor="#48647f" bgColor="#cbd4de" gridWidth={14} dotSize={1.4} slot="background" />
+	<Background dotColor="#48647f" bgColor="#ffffff" gridWidth={14} dotSize={1.4} slot="background" />
 </Svelvet>
