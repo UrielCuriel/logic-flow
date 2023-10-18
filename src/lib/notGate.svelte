@@ -2,10 +2,13 @@
 	import { Node, generateOutput, generateInput, Anchor } from 'svelvet';
 	export let id = 0;
 	export let position = { x: 0, y: 0 };
-	export let inputKey: string = '';
+	export let connetcionKey: [string | number, string | number] = [0, 0];
+	let idNode = `not-${id}`;
+	let idInput = `not-${id}-input`;
+	let idOutput = `not-${id}-output`;
 	let notOutput = false;
 	const initalData = {
-		[inputKey]: false
+		[idInput]: false
 	};
 	type Inputs = {
 		[x: string]: boolean;
@@ -14,7 +17,7 @@
 	const input = generateInput(initalData);
 
 	const procesor = (inputs: Inputs) => {
-		return !inputs[inputKey];
+		return !inputs[idInput];
 	};
 
 	const output = generateOutput(input, procesor);
@@ -24,7 +27,7 @@
 
 <Node
 	{position}
-	{id}
+	id={idNode}
 	locked={false}
 	bgColor="transparent"
 	outputs={1}
@@ -33,7 +36,7 @@
 	height={87}
 >
 	<div class="input-anchors">
-		<Anchor id={inputKey} key={inputKey} inputsStore={input} direction="west" input />
+		<Anchor id={idInput} key={idInput} inputsStore={input} direction="west" input />
 	</div>
 	<svg viewBox="0 0 56 29" width="158" height="87">
 		<path
@@ -46,7 +49,7 @@
 		/>
 	</svg>
 	<div class="output-anchors">
-		<Anchor outputStore={output} direction="east" output connections={[['output', `not-${id}`]]} />
+		<Anchor id={idOutput} outputStore={output} direction="east" output connections={[connetcionKey]} />
 	</div>
 </Node>
 

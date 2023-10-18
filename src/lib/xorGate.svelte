@@ -2,21 +2,15 @@
 	import { Node, generateOutput, generateInput, Anchor } from 'svelvet';
 	export let id = 0;
 	export let position = { x: 0, y: 0 };
-	export let inputs: string[] = [];
+	export let connetcionKey: [string | number, string | number] = [0, 0];
+	let idNode = `xor-${id}`;
+	let idInput = `xor-${id}-input`;
+	let idOutput = `xor-${id}-output`;
 	let xorOutput = false;
-	const initalData = inputs
-		.map((input) => {
-			return {
-				[input]: false
-			};
-		})
-		.reduce((acc, curr) => {
-			return {
-				...acc,
-				...curr
-			};
-		}, {});
-
+	const initalData = {
+		[`${idInput}-0`]: false,
+		[`${idInput}-1`]: false
+	};
 	type Inputs = {
 		[x: string]: boolean;
 	};
@@ -36,7 +30,7 @@
 
 <Node
 	{position}
-	{id}
+	id={idNode}
 	locked={false}
 	bgColor="transparent"
 	outputs={1}
@@ -45,7 +39,7 @@
 	height={87}
 >
 	<div class="input-anchors">
-		{#each inputs as key}
+		{#each Object.keys(initalData) as key}
 			<Anchor id={key} {key} inputsStore={input} direction="west" input />
 		{/each}
 	</div>
@@ -60,7 +54,7 @@
 		/>
 	</svg>
 	<div class="output-anchors">
-		<Anchor outputStore={output} direction="east" output connections={[['output', `xor-${id}`]]} />
+		<Anchor id={idOutput} outputStore={output} direction="east" output connections={[connetcionKey]} />
 	</div>
 </Node>
 

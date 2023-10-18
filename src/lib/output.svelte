@@ -2,10 +2,12 @@
 	import { Node, generateOutput, generateInput, Anchor } from 'svelvet';
 	export let id = 0;
 	export let position = { x: 0, y: 0 };
-	export let inputKey: string = '';
+	let idNode = `output-${id}`;
+	let idInput = `output-${id}-input`;
+
 	let finalOutput = false;
 	const initalData = {
-		[inputKey]: false
+		[idInput]: false
 	};
 	type Inputs = {
 		[x: string]: boolean;
@@ -14,7 +16,7 @@
 	const input = generateInput(initalData);
 
 	const procesor = (inputs: Inputs) => {
-		return inputs[inputKey];
+		return inputs[idInput];
 	};
 
 	const output = generateOutput(input, procesor);
@@ -24,7 +26,7 @@
 
 <Node
 	{position}
-	{id}
+	id={idNode}
 	locked={false}
 	bgColor="transparent"
 	outputs={1}
@@ -33,7 +35,7 @@
 	height={158}
 >
 	<div class="input-anchors">
-		<Anchor id={inputKey} key={inputKey} inputsStore={input} direction="west" input />
+		<Anchor id={idInput} key={idInput} inputsStore={input} direction="west" input />
 	</div>
 	<svg viewBox="0 0 112 112" width="158" height="158">
 		<circle

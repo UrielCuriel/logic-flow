@@ -4,6 +4,9 @@
 	export let id = 0;
 	export let position = { x: 0, y: 0 };
 	export let isOn = false;
+	export let connetcionKey: [string | number, string | number] = [0, 0];
+	let idNode = `switch-${id}`;
+	let idOutput = `switch-${id}-output`;
 
 	const initalData = {
 		isOn: isOn
@@ -35,7 +38,7 @@
 <Node
 	on:nodeClicked={toggle}
 	{position}
-	{id}
+	id={idNode}
 	locked={true}
 	bgColor="transparent"
 	outputs={1}
@@ -106,8 +109,9 @@
 			bgColor={isOn ? '#61ffca' : '#d71c4a'}
 			output
 			direction="east"
+			id={idOutput}
 			outputStore={output}
-			connections={[['output', `switch-${id}`]]}
+			connections={[connetcionKey]}
 		/>
 	</div>
 </Node>
