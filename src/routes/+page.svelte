@@ -111,12 +111,12 @@
 			component: AndGate,
 			connetcionKey: ['output-17', 'output-17-input']
 		},
-		{ id: 17, position: { x: 2239, y: 754 }, component: Output }
+		{ id: 17, position: { x: 2239, y: 776 }, component: Output }
 	];
 	let zoom = 0.5;
 </script>
 
-<Svelvet height={800} controls {zoom} locked={false}>
+<Svelvet height={800} controls {zoom} locked fitView>
 	{#each initialNodes as { component, ...node }}
 		<svelte:component this={component} {...node} />
 	{/each}

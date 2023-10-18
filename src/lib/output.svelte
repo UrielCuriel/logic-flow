@@ -31,13 +31,13 @@
 	bgColor="transparent"
 	outputs={1}
 	borderWidth={0}
-	width={158}
-	height={158}
+	width={112}
+	height={112}
 >
 	<div class="input-anchors">
 		<Anchor id={idInput} key={idInput} inputsStore={input} direction="west" input />
 	</div>
-	<svg viewBox="0 0 112 112" width="158" height="158">
+	<svg viewBox="0 0 112 112" width="112" height="112">
 		<circle
 			style="fill:{finalOutput
 				? '#61ffca'
